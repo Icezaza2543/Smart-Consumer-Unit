@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Icezaza Consumer</title>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+    <!-- include highchartsjs to build the charts-->
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
+    <!--include icons from fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--reference for favicon-->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!--reference a stylesheet-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!--TOP BAR-->
+    <div class="topnav">
+      <h1> <i class="fas fa-clipboard-list"></i> Smart Consumer Unit Sensor <i class="fas fa-clipboard-list"></i>
+        <a class="dropdown" style="float:right ;" href="index.html"><i class="fas fa-arrow-left"></i>
+        </a>
+      </h1>
+    </div>
+    <!--AUTHENTICATION BAR (USER DETAILS/LOGOUT BUTTON)-->
+    <div id="authentication-bar" style="display: none;">
+      <p><span id="authentication-status">User logged in</span>
+        <span id="user-details">USEREMAIL</span>
+        <a href="/" id="logout-link">(logout)</a>
+      </p>
+    </div>
+    <!--LOGIN FORM-->
+    <form id="login-form" style="display: none;">
+      <div class="form-elements-container">
+        <label for="input-email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Username" id="input-email" required>
+        <label for="input-password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="input-password" required>
+        <button type="submit" id="login-button">Login</button>
+        <p id="error-message" style="color:red;"></p>
+      </div>
+    </form>
+
+  <!--------------------Dashboard--------------------->
+  <div class="content-sign-in" id="content-sign-in" style="display: none;">
+      <!--LAST UPDATE-->
+    <p>
+        <span class ="date-time">Last update: <span id="page2lastUpdate"></span>
+      </span>
+    </p>
+      <div id="cards-div"></div>
+      <div id ="gauges-div"></div>
+      <div>
+        <p> Number of readings: <input type="number" id="charts-range" min="1" max="1000" step="1"></p>
+      </div>
+      <!--CHARTS-->
+      <div id="charts-div">
+             <!--TEMPERATURE-CHART-->
+        <div class="GraphContainer">
+            <div class="card">
+              <p><i class="fas fa-thermometer-half" style="color:#059e8a;"></i> TEMPERATURE CHART</p>
+              <div id="chart-temperature" class="chart-container"></div>
+            </div>
+               <!--HUMIDITY-CHART-->
+          <div class="card">
+            <p><i class="fas fa-tint" style="color:#00add6;"></i> HUMIDITY CHART</p>
+            <div id="chart-humidity" class="chart-container"></div>
+          </div>
+        </div>
+             <!--Voltage-CHART-->
+        <div class="GraphContainer">
+             <div class="card">
+              <p><i class="fas fa-bolt" style="color:#df0d57;"></i> VOLTAGE CHART</p>
+              <div id="chart-voltage" class="chart-container"></div>
+            </div>
+                  <!--Current-CHART-->
+            <div class="card">
+              <p><i class="fas fa-bolt" style="color:#d2e902;"></i> CURRENT CHART</p>
+              <div id="chart-current" class="chart-container"></div>
+            </div>
+                     <!--POWER-CHART-->
+            <div class="card">
+              <p><i class="fas fa-bolt" style="color:#170097;"></i> POWER CHART</p>
+              <div id="chart-power" class="chart-container"></div>
+            </div>
+          </div>
+      </div>
+
+    <!--INCLUDE JS FILES-->
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/plot.js"></script>
+    <script src="scripts/charts-definition.js"></script>
+  </body>
+  </html>

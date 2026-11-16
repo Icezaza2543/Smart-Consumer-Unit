@@ -1,0 +1,4 @@
+secrets.h
+.env
+.env.*
+web/public/scripts/firebase-config.js

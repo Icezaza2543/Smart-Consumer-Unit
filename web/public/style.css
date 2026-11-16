@@ -1,0 +1,533 @@
+@import url('https://fonts.cdnfonts.com/css/cascadia-code');
+
+
+html 
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: inline-block;
+    text-align: center;
+}
+h1 {
+    font-size: 1.8rem;
+    color: white;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #73AD21;
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+}
+#authentication-bar{
+    background-color:mintcream;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+#user-details{
+    color: cadetblue;
+}
+
+.content {
+    padding: 20px;
+}
+
+body {
+    margin: 0;
+}
+
+.card-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    position: relative;
+    z-index: 1;
+}
+.card {
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+}
+
+.index_Sensor_Grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 0px;
+}
+
+.sensor-card{
+    font-family: 'Cascadia Code', sans-serif;
+    background-color: wheat;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+}
+
+
+.card-title {
+    font-family: "Cascadia Mono", monospace;
+    font-size: 1.2rem;
+    color: #273746
+}
+.state {
+    font-family: "Cascadia Mono", monospace;
+    color:#000000;
+}
+button {
+    background-color: #049faa;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.button-on {
+    background-color:#034078;
+}
+.button-on:hover {
+    background-color: #1282A2;
+}
+.button-off {
+    background-color:#858585;
+}
+.button-off:hover {
+    background-color: #252524;
+}
+
+.form-elements-container{
+    padding: 16px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/*--------------------------------------------------------**/
+
+.dropbutton 
+{
+    font-family: 'Cascadia Code', sans-serif;
+    background-color: #73AD21;
+    color: white;
+    right: 1px;
+    padding: 16px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    font-family: 'Cascadia Code', sans-serif;
+    border-radius: 2px;
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    width: auto;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content-text {
+    font-size: 20px;
+    color: black;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown-content-text:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+
+/*--------------------------------------------------------**/
+
+#user-details{
+    color: cadetblue;
+}
+
+.minicardsensor
+{
+    background-color: white;
+    box-shadow: 2px 2px 6px 1px rgba(140,140,140,.5);
+    padding: 1%;
+}
+
+.GraphGrid
+{
+    font-family: 'Cascadia Code', sans-serif;
+    max-width: 900px;
+    max-height: auto;
+    margin: 10px auto;
+    margin-bottom: 30px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 2fr));
+    position: relative;
+}
+
+#chartoverviewcontainer{ height: 400px;}
+
+.GraphContainer {
+    font-family: 'Cascadia Code', sans-serif;
+    max-width: auto;
+    max-height: auto;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    display: grid;
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.sensecards {
+    font-family: 'Cascadia Code', sans-serif;
+    max-width: 900px;
+    max-height: auto;
+    margin: 10px auto;
+    margin-bottom: 30px;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 2fr));
+    position: relative;
+    z-index: 2;
+}
+
+.cardsensor {
+    border-radius: 25px;
+    width: 150px;
+    height: 80px;
+    background-color: white;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+    padding: 5%;
+}
+
+.reading {
+    color: #193036;
+}
+
+.date-time{
+    font-family: 'Cascadia Code', sans-serif;
+    font-size: 0.8rem;
+    color: #1282A2;
+}
+
+button {
+    background-color: #049faa;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button:hover {
+   opacity: 0.8;
+}
+.deletebtn{
+    background-color: #c52c2c;
+}
+
+.form-elements-container{
+    padding: 16px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.chart-title {
+    font-family: "Cascadia Mono", monospace;
+    font-size: 1.2rem;
+    color: #000000
+}
+
+.display-chart-container 
+{
+    display: grid;
+    height: auto;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    z-index: 0;
+}
+  
+.display-chart {
+    border-radius: 20px;
+    flex-basis: calc(33.33% - 20px);
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+  
+.display-chart-header {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+  
+.display-chart-header h2 {
+    margin: 0;
+}
+  
+.display-chart-body {
+    font-family: 'Courier New', Courier, monospace;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+canvas{
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+}   
+tr, td {
+    padding: 0.25rem;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+tr:hover {
+    background-color: #ddd;
+}
+th {
+    position: sticky;
+    top: 0;
+    background-color: #50b8b4;
+    color: white;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
+}
+  
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+  
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* For button slider */
+.progress{
+    margin: 30px auto;
+    width: 70%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+* {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  *:focus {
+    outline: none;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #f1f9f9;
+  }
+  
+  #app-cover {
+    display: table;
+    width: 600px;
+    margin: 80px auto;
+    counter-reset: button-counter;
+  }
+  
+  .row {
+    display: table-row;
+  }
+  
+  .toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    height: 140px;
+    box-sizing: border-box;
+  }
+  
+  .button-cover {
+    height: 100px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+  }
+  
+  .button-cover:before {
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+  }
+  
+  .button-cover,
+  .knobs,
+  .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .button {
+    position: relative;
+    top: 50%;
+    width: 74px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+  }
+  
+  .button.r,
+  .button.r .layer {
+    border-radius: 100px;
+  }
+  
+  .button.b2 {
+    border-radius: 2px;
+  }
+  
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  .knobs {
+    z-index: 2;
+  }
+  
+  .layer {
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+  
+  /* Button 1 */
+  .relay-switch .knobs:before {
+    content: "ON";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #03a9f4;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  }
+  
+  .relay-switch .checkbox:checked + .knobs:before {
+    content: "OFF";
+    left: 42px;
+    background-color: #f44336;
+  }
+  
+  .relay-switch .checkbox:checked ~ .layer {
+    background-color: #fcebeb;
+  }
+  
+  .relay-switch .knobs,
+  .relay-switch .knobs:before,
+  .relay-switch .layer {
+    transition: 0.3s ease all;
+  }
+  
+  .Cradit
+  {
+    font-size: small;
+    font-family: monospace;
+    text-align: center;
+  }
+.relay-switch .checkbox:disabled + .knobs { opacity: 0.45; }
+.relay-switch .checkbox:focus-visible ~ .layer { outline: 2px solid currentColor; }

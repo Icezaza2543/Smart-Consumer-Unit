@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Icezaza Consumer</title>
+
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+    <!-- include highchartsjs to build the charts-->
+    
+    <!--include icons from fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css">
+  </head>
+
+<body>
+  <!--TOP BAR-->
+  <div class="topnav">
+    <h1> <i class="fas fa-lightbulb"></i> Smart Consumer Unit Control <i class="fas fa-lightbulb"></i>
+      <div class="dropdown" style="float:right;">
+        <button class="dropbutton" type="button" style="right: auto;" ><i class="fa-sharp fa-solid fa-bars-staggered"></i></button>
+        <div class="dropdown-content" >
+          <a class="dropdown-content-text" href="PageTwo.html">sensor</a>
+        </div>
+      </div>
+    </h1>
+  </div>
+
+  <!--AUTHENTICATION BAR (USER DETAILS/LOGOUT BUTTON)-->
+  <div id="authentication-bar" style="display: none;">
+    <p><span id="authentication-status">User logged in</span>
+       <span id="user-details">USEREMAIL</span>
+       <a href="/" id="logout-link">(logout)</a>
+    </p>
+  </div>
+
+  <!--LOGIN FORM-->
+  <form id="login-form" style="display: none;">
+    <div class="form-elements-container">
+      <label for="input-email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Username" id="input-email" required>
+
+      <label for="input-password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="input-password" required>
+
+      <button type="submit" id="login-button">Login</button>
+
+      <button type="button" id="register-button" onclick="showRegisterForm()">Register</button>
+      <p id="error-message" style="color:red;"></p>
+
+    </div>
+  </form>
+
+  <!--REGISTER FORM-->
+  <form id="register-form" style="display: none;">
+    <div class="form-elements-container">
+      <label for="input-email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" id="input-register-email" required>
+  
+      <label for="register-password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="register-password" required>
+  
+      <label for="confirm-password"><b>Confirm Password</b></label>
+      <input type="password" placeholder="Confirm Password" id="confirm-password" required>
+  
+      <button type="submit" id="register-submit">Register</button>
+
+      <button type="button" id="cancel-button" onclick="showLoginForm()">Cancel</button>
+      <p id="registration-error-message" style="color:red;"></p>
+    </div>
+  </form>
+  
+
+  <!----------SIGN IN ONLY CONTENT---------->
+
+  <div class="content-sign-in" id="content-sign-in" style="display: none;">
+
+    <!----------Display Sensor---------->
+    <p><span class ="date-time">Last update: <span id="indexlastUpdate"></span></span></p>
+    <div id="cards-div" class="sensecards">
+      
+      <div class="cardsensor">
+        <p><i class="fa-solid fa-temperature-high fa-lg" style="color:#059e8a;"></i> Temperature </p>
+        <p><span class="reading"> <span id="indextemp"> </span> &deg;C </span> </p>
+      </div>
+
+      <div class="cardsensor">
+        <p><i class="fa-sharp fa-solid fa-droplet-percent fa-lg" style="color:#00add6;"></i> Humindity </p>
+        <p><span class="reading"> <span id="indexhum"> </span> &percnt; </span> </p>
+      </div>
+
+      <div class="cardsensor">
+        <p><i class="fa-solid fa-bolt-lightning fa-lg" style="color:#df0d57;"></i> Ac Voltage </p>
+        <p><span class="reading"> <span id="indexvolt"> </span> V </span> </p>
+      </div>
+
+      <div class="cardsensor">
+        <p><i class="fa-solid fa-bolt-auto fa-lg" style="color:#d2e902;"></i> Ac Current </p>
+        <p><span class="reading"> <span id="indexcur"> </span> A </span> </p>
+      </div>
+
+      <div class="cardsensor">
+        <p><i class="fas fa-bolt fa-lg" style="color:#170097;"></i> Power </p>
+        <p><span class="reading"> <span id="indexpwr"> </span> W </span> </p>
+      </div>
+
+      <div class="cardsensor">
+        <p><i class="fa-solid fa-wave-sine fa-lg" style="color:#ee09e3;"></i> Frequency </p>
+        <p><span class="reading"> <span id="indexfre"> </span> Hz </span> </p>
+      </div>
+  
+      <div class="cardsensor">
+        <p><i class="fa-regular fa-square-parking fa-lg" style="color:#0fc1e4;"></i> Power Factor </p>
+        <p><span class="reading"> <span id="indexfac"> </span>  </span> </p>
+      </div>
+  
+      <div class="cardsensor">
+        <p><i class="fa-solid fa-sensor-fire fa-lg" style="color:#ff0000;"></i> Flame Status </p>
+        <p><span class="reading"> <span id="indexflame"></span>  </span> </p>
+      </div>
+
+    </div>
+  
+    <!----------RELAY CONTROLS---------->
+    <div class="card-grid">
+      
+      <!--CARD FOR GPIO 12-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 1</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn1" aria-label="Outlet 1 off" aria-describedby="state1" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state1"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 13-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 2</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn2" aria-label="Outlet 2 off" aria-describedby="state2" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state2"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 14-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 3</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn3" aria-label="Outlet 3 off" aria-describedby="state3" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state3"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 15-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 4</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn4" aria-label="Outlet 4 off" aria-describedby="state4" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state4"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 5-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 5</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn5" aria-label="Outlet 5 off" aria-describedby="state5" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state5"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 6-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 6</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn6" aria-label="Outlet 6 off" aria-describedby="state6" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state6"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 7-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 7</p>
+        <p>
+          <div class="progress">
+            <div class="button r relay-switch">
+              <input id="btn7" aria-label="Outlet 7 off" aria-describedby="state7" disabled type="checkbox" class="checkbox" />
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+          </div>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state7"></span></p>
+      </div>
+
+      <!--CARD FOR GPIO 8-->
+      <div class="card">
+        <p class="card-title"><i class="fa-light fa-outlet fa-lg"></i> Outlet 8</p>
+        <p>
+          <div class="progress">
+              <div class="button r relay-switch">
+                <input id="btn8" aria-label="Outlet 8 off" aria-describedby="state8" disabled type="checkbox" class="checkbox" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
+            </div>
+        </p>
+
+        <p class="state">Requested state: <span aria-live="polite" id="state8"></span></p>
+
+        <!-- old 8
+        <p class="card-title"><i class="fa-solid fa-outlet"></i> Outlet 8</p>
+        <p>
+          <button class="button-on" id="btn8On">ON</button>
+          <button class="button-off" id="btn8Off">OFF</button>
+        </p>
+        <p class="state">Requested state: <span aria-live="polite" id="state8"></span></p>
+        -->
+
+      </div>
+    </div>
+
+    <!-- Overview chart -->
+      
+    <div id="charts-div">
+    <div class="display-chart-container">
+      <div class="display-chart">
+        <h2 class="chart-title"> Overview</h2>
+        <div class="display-chart-body" id="indexmainchart"></div>
+      </div>
+    </div>
+    </div>
+  
+    <div class="Cradit">
+      <p>This work is in <b>Internet of Things Tecnology adoption applying to Consumer Uint</b> research project funding by Naresuan University, Thailand, 2024.</p>
+      <span>Created by Terasit Juntarasombut
+      Icons from <a href="https://fontawesome.com/">Font Awesome</a>. </span>
+    </div>
+
+
+
+
+  </div> <!----------SIGN IN ONLY CONTENT---------->
+
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/indexchart.js"></script>
+  <script src="scripts/indextemp.js"></script>
+</body>
+</html>
