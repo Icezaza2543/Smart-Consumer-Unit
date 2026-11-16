@@ -2,6 +2,10 @@
 
 An eight-circuit electrical distribution cabinet built for an undergraduate computer engineering project by **Terasit Juntarasombut**. Three microcontrollers share one Firebase Realtime Database. An operator can request a circuit change from the browser, inspect historical readings, or walk up to the cabinet and read the TFT.
 
+**[Explore the recorded sensor demo →](https://icezaza2543.github.io/Smart-Consumer-Unit/)**
+
+Browse seven measurements from 35,980 sensor records captured on 19–24 March 2023 (Bangkok time). Select a day and inspect five-minute means. The demo runs entirely from static files and opens without signing in.
+
 | Eight contactors installed in the cabinet | Live measurements on the cabinet door |
 |:---:|:---:|
 | ![Contactor bank installed in the prototype](docs/relay-bank.jpg) | ![Prototype TFT showing voltage, current, power, temperature and humidity](docs/tft-display.jpg) |

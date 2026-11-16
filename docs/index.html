@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Recorded telemetry · Smart Consumer Unit</title><link rel="stylesheet" href="demo.css"><script defer src="demo.js"></script></head>
+<body><main><nav><a href="https://github.com/Icezaza2543/Smart-Consumer-Unit">← Smart Consumer Unit</a></nav>
+<header><div><p class="eyebrow">UNDERGRADUATE RESEARCH · MARCH 2023</p><h1>Inside the cabinet</h1><p class="intro">Explore six days of electrical and environmental readings captured by the prototype’s ESP8266.</p></div><figure><img src="tft-display.jpg" alt="The cabinet display showing five measurements"></figure></header>
+<section aria-labelledby="heading"><div class="controls"><h2 id="heading">Sensor history</h2><label>Measurement<select id="metric"></select></label><label>Period<select id="period"><option value="">All recorded days</option></select></label></div>
+<p id="summary" role="status">Loading recorded readings…</p><svg id="chart" viewBox="0 0 900 310" role="img" aria-label="Sensor measurements over time"></svg>
+<label class="scrub">Inspect a recorded interval<input id="cursor" type="range" min="0" value="0" disabled></label><output id="reading"></output></section>
+<footer>Each point is the mean of available readings in a five-minute interval. Gaps indicate intervals with no usable measurement. Times are in Bangkok (UTC+7). This page reads a static dataset and has no connection to the cabinet.</footer></main></body></html>
